@@ -4,13 +4,17 @@ package com.univ.beans;
  * Created by Олюнь on 17.09.2017.
  */
 
+import com.univ.dao.Identificator;
+
+import java.io.Serializable;
+
 /**
  * radiation - in x-rays
  */
-public class Radiation {
+public class Radiation implements Identificator<Long>,Serializable {
     private long id;
     private double radiation;
-    private String advantetype;
+    private String advantageType;
 
     public Radiation() {
     }
@@ -31,11 +35,11 @@ public class Radiation {
         this.radiation = radiation;
     }
 
-    public String getAdvantetype() {
-        return advantetype;
+    public String getAdvantageType() {
+        return advantageType;
     }
 
-    public void setAdvantetype(String advantetype) {
-        this.advantetype = advantetype;
+    public void setAdvantageType(String advantageType) {
+        this.advantageType = advantageType;
     }
 }

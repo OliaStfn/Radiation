@@ -1,9 +1,13 @@
 package com.univ.beans;
 
+import com.univ.dao.Identificator;
+
+import java.io.Serializable;
+
 /**
  * Created by Олюнь on 17.09.2017.
  */
-public class Influence {
+public class Influence implements Identificator<Long>, Serializable {
     private long id;
     //some fields
     private long radiationId;

@@ -1,9 +1,13 @@
 package com.univ.beans;
 
+import com.univ.dao.Identificator;
+
+import java.io.Serializable;
+
 /**
  * Created by Олюнь on 17.09.2017.
  */
-public class Position {
+public class Position implements Identificator<Long>,Serializable {
     private long id;
     private int longitudeDegree;
     private int latitudeDegree;

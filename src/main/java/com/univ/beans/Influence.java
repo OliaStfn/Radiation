@@ -9,7 +9,8 @@ import java.io.Serializable;
  */
 public class Influence implements Identificator<Long>, Serializable {
     private long id;
-    //some fields
+    private int probabilityOfMutation; //in percent
+    private int percentageOfContamination; //in percent
     private long radiationId;
 
     public Influence() {
@@ -21,6 +22,22 @@ public class Influence implements Identificator<Long>, Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getProbabilityOfMutation() {
+        return probabilityOfMutation;
+    }
+
+    public void setProbabilityOfMutation(int probabilityOfMutation) {
+        this.probabilityOfMutation = probabilityOfMutation;
+    }
+
+    public int getPercentageOfContamination() {
+        return percentageOfContamination;
+    }
+
+    public void setPercentageOfContamination(int percentageOfContamination) {
+        this.percentageOfContamination = percentageOfContamination;
     }
 
     public long getRadiationId() {

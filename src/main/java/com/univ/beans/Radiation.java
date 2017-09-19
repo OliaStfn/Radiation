@@ -7,6 +7,7 @@ package com.univ.beans;
 import com.univ.dao.Identificator;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * radiation - in x-rays
@@ -15,6 +16,7 @@ public class Radiation implements Identificator<Long>,Serializable {
     private long id;
     private double radiation;
     private String advantageType;
+    private LocalDate lastUpdateDate;
 
     public Radiation() {
     }
@@ -41,5 +43,13 @@ public class Radiation implements Identificator<Long>,Serializable {
 
     public void setAdvantageType(String advantageType) {
         this.advantageType = advantageType;
+    }
+
+    public LocalDate getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(LocalDate lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

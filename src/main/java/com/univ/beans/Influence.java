@@ -11,7 +11,7 @@ public class Influence implements Identificator<Long>, Serializable {
     private long id;
     private int probabilityOfMutation; //in percent
     private int percentageOfContamination; //in percent
-    private long radiationId;
+    private Radiation radiation;
 
     public Influence() {
     }
@@ -40,11 +40,11 @@ public class Influence implements Identificator<Long>, Serializable {
         this.percentageOfContamination = percentageOfContamination;
     }
 
-    public long getRadiationId() {
-        return radiationId;
+    public Radiation getRadiation() {
+        return radiation;
     }
 
-    public void setRadiationId(long radiationId) {
-        this.radiationId = radiationId;
+    public void setRadiation(Radiation radiation) {
+        this.radiation = radiation;
     }
 }

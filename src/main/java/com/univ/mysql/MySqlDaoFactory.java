@@ -15,8 +15,8 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
 
     private static final Logger log = Logger.getLogger(MySqlDaoFactory.class);
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String URL = "jdbc:mysql://localhost/?useSSL=false";
-    private static String USERNAME = "";
+    private static String URL = "jdbc:mysql://localhost/radiation?useSSL=false";
+    private static String USERNAME = "root";
     private static String PASSWORD = "";
     private Map<Class, DaoCreator> allDao;
 

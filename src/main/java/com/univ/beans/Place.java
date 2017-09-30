@@ -11,8 +11,8 @@ public class Place implements Identificator<Long>,Serializable {
     private long id;
     private String name;
     private String description;
-    private long positionId;
-    private long influenceId;
+    private Position position;
+    private Influence influence;
 
     public Place() {
     }
@@ -41,19 +41,19 @@ public class Place implements Identificator<Long>,Serializable {
         this.description = description;
     }
 
-    public long getPositionId() {
-        return positionId;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPositionId(long positionId) {
-        this.positionId = positionId;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public long getInfluenceId() {
-        return influenceId;
+    public Influence getInfluence() {
+        return influence;
     }
 
-    public void setInfluenceId(long influenceId) {
-        this.influenceId = influenceId;
+    public void setInfluence(Influence influence) {
+        this.influence = influence;
     }
 }

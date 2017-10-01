@@ -1,5 +1,9 @@
 package com.univ.mysql;
 
+import com.univ.beans.Influence;
+import com.univ.beans.Place;
+import com.univ.beans.Position;
+import com.univ.beans.Radiation;
 import com.univ.dao.AbstractDao;
 import com.univ.dao.DaoException;
 import com.univ.dao.DaoFactory;
@@ -51,6 +55,35 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
 
 
     public MySqlDaoFactory() {
-        allDao = new HashMap<Class, DaoCreator>();
+        allDao = new HashMap<Class, DaoCreator>() {
+        };
+
+        allDao.put(Radiation.class, new DaoCreator() {
+            @Override
+            public AbstractDao create(Object connection) {
+                return new MySqlRadiationDao((Connection) connection);
+            }
+        });
+
+        allDao.put(Position.class, new DaoCreator() {
+            @Override
+            public AbstractDao create(Object connection) {
+                return new MySqlPositionDao((Connection) connection);
+            }
+        });
+
+        allDao.put(Place.class, new DaoCreator() {
+            @Override
+            public AbstractDao create(Object connection) {
+                return new MySqlPlaceDao((Connection) connection);
+            }
+        });
+
+        allDao.put(Influence.class, new DaoCreator() {
+            @Override
+            public AbstractDao create(Object connection) {
+                return new MySqlInfluenceDao((Connection) connection);
+            }
+        });
     }
 }

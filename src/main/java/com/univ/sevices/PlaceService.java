@@ -7,16 +7,41 @@ import com.univ.dao.DaoFactory;
 import com.univ.mysql.MySqlDaoFactory;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class PlaceService implements IPlaceService {
     @Override
     public Place getPlaceByCoordinate(Position position) {
-        return null;
+        DaoFactory factory = new MySqlDaoFactory();
+        Place result = null;
+        try {
+            AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
+            ArrayList<Place> places = dao.readAll();
+            for (Place place : places) {
+                if (place.getPosition().equals(position))
+                    result = place;
+            }
+        } catch (DaoException e) {
+            //TODO: log
+        }
+        return result;
     }
 
     @Override
     public Place getPlaceByName(String name) {
-        return null;
+        DaoFactory factory = new MySqlDaoFactory();
+        Place result = null;
+        try {
+            AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
+            ArrayList<Place> places = dao.readAll();
+            for (Place place : places) {
+                if (place.getName().equals(name))
+                    result = place;
+            }
+        } catch (DaoException e) {
+            //TODO: log
+        }
+        return result;
     }
 
     @Override
@@ -35,7 +60,43 @@ public class PlaceService implements IPlaceService {
 
     @Override
     public void addPlaceWithApproximation(Place place, Position position) {
+        //TODO: check method and change
+        DaoFactory factory = new MySqlDaoFactory();
+        IInfluenceService service = new InfluenceService();
+        try {
+            AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
 
+            HashSet<Influence> nearPositions = new HashSet<>();
+            int difference = 1;
+            while (nearPositions.size() < 20 && difference < 10) {
+                Position nearPosition = position;
+                nearPosition.setLatitudeMinute(nearPosition.getLatitudeMinute() + difference);
+                Place temp = getPlaceByCoordinate(nearPosition);
+                if (temp != null) nearPositions.add(temp.getInfluence());
+
+                nearPosition = position;
+                nearPosition.setLatitudeMinute(nearPosition.getLatitudeMinute() - difference);
+                temp = getPlaceByCoordinate(nearPosition);
+                if (temp != null) nearPositions.add(temp.getInfluence());
+
+                nearPosition = position;
+                nearPosition.setLongitudeMinute(nearPosition.getLongitudeMinute() + difference);
+                temp = getPlaceByCoordinate(nearPosition);
+                if (temp != null) nearPositions.add(temp.getInfluence());
+
+                nearPosition = position;
+                nearPosition.setLongitudeMinute(nearPosition.getLongitudeMinute() - difference);
+                temp = getPlaceByCoordinate(nearPosition);
+                if (temp != null) nearPositions.add(temp.getInfluence());
+
+                difference++;
+            }
+            place.setPosition(addPosition(position));
+            place.setInfluence(service.approximation(nearPositions));
+            dao.create(place);
+        } catch (DaoException e) {
+            //TODO: log
+        }
     }
 
     @Override

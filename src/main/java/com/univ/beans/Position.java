@@ -56,4 +56,26 @@ public class Position implements Identificator<Long>,Serializable {
     public void setLatitudeMinute(int latitudeMinute) {
         this.latitudeMinute = latitudeMinute;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (longitudeDegree != position.longitudeDegree) return false;
+        if (latitudeDegree != position.latitudeDegree) return false;
+        if (longitudeMinute != position.longitudeMinute) return false;
+        return latitudeMinute == position.latitudeMinute;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = longitudeDegree;
+        result = 31 * result + latitudeDegree;
+        result = 31 * result + longitudeMinute;
+        result = 31 * result + latitudeMinute;
+        return result;
+    }
 }

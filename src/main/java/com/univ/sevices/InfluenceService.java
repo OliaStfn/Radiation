@@ -89,6 +89,7 @@ public class InfluenceService implements IInfluenceService {
 
     @Override
     public Recommendation getRecommendation(Influence influence) {
+
         return null;
     }
 }

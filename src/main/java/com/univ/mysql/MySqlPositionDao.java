@@ -17,7 +17,7 @@ public class MySqlPositionDao extends AbstractDao<Position,Long> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM position WHERE position_id=?;";
+        return "SELECT * FROM position WHERE position_id=";
     }
 
     @Override
@@ -33,8 +33,8 @@ public class MySqlPositionDao extends AbstractDao<Position,Long> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO position(latitude_degree,latitude_minute," +
-                "longitude_degree,longitude_minute) VALUES (?,?,?,?)";
+        return "INSERT INTO position (latitude_degree,latitude_minute," +
+                "longitude_degree,longitude_minute) VALUES (?,?,?,?);";
     }
 
     @Override

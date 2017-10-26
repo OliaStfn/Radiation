@@ -125,7 +125,6 @@ public class PlaceService implements IPlaceService {
     @Override
     public void changeInfoAboutPlace(Place place) {
         DaoFactory factory = new MySqlDaoFactory();
-        IInfluenceService service = new InfluenceService();
         try {
             AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
             dao.update(place);

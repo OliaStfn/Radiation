@@ -19,7 +19,7 @@ public class MySqlInfluenceDao extends AbstractDao<Influence, Long> {
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM influence inf LEFT JOIN radiation r " +
-                "USING(radiation_id) WHERE influence_id=?;";
+                "USING(radiation_id) WHERE influence_id=";
     }
 
     @Override

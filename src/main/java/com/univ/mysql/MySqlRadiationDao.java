@@ -17,7 +17,7 @@ public class MySqlRadiationDao extends AbstractDao<Radiation, Long> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM radiation WHERE radiation_id=?;";
+        return "SELECT * FROM radiation WHERE radiation_id=";
     }
 
     @Override

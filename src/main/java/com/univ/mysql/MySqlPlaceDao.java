@@ -23,8 +23,8 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         return "SELECT * FROM place pl " +
                 "LEFT JOIN influence inf USING(influence_id) " +
                 "LEFT JOIN radiation r USING(radiation_id) " +
-                "NATURAL JOIN position p ON(pl.position_id=p.position_id) " +
-                "WHERE place_id=?;";
+                "LEFT JOIN position p ON(pl.position_id=p.position_id) " +
+                "WHERE pl.place_id=";
     }
 
     @Override
@@ -32,12 +32,12 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         return "SELECT * FROM place pl " +
                 "LEFT JOIN influence inf USING(influence_id) " +
                 "LEFT JOIN radiation r USING(radiation_id) " +
-                "NATURAL JOIN position p ON(pl.position_id=p.position_id);";
+                "LEFT JOIN position p ON(pl.position_id=p.position_id);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE place SET place_name=?,place_description=?,position_id=?,influence_id=?" +
+        return "UPDATE place SET place_name=?,place_description=?,position_id=?,influence_id=? " +
                 "WHERE place_id=?;";
     }
 

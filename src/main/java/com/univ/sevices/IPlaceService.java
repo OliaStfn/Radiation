@@ -2,7 +2,6 @@ package com.univ.sevices;
 
 import com.univ.beans.Influence;
 import com.univ.beans.Place;
-import com.univ.beans.Position;
 import com.univ.beans.Recommendation;
 
 import java.util.ArrayList;

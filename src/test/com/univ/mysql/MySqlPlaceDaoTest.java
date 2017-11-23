@@ -1,17 +1,7 @@
 package com.univ.mysql;
 
-import com.univ.beans.Influence;
-import com.univ.beans.Place;
-import com.univ.beans.Position;
-import com.univ.dao.AbstractDao;
-import org.junit.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.*;
-
 public class MySqlPlaceDaoTest {
-    @Test
+   /* @Test
     public void create() throws Exception {
         MySqlDaoFactory factory = new MySqlDaoFactory();
         AbstractDao dao = factory.getDao(factory.getConnection(), Influence.class);
@@ -63,6 +53,6 @@ public class MySqlPlaceDaoTest {
         AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
         Place place = (Place) dao.read(2);
         dao.delete(place);
-    }
+    }*/
 
 }

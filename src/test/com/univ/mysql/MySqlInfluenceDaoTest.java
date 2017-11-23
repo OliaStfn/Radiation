@@ -1,17 +1,7 @@
 package com.univ.mysql;
 
-import com.univ.beans.Influence;
-import com.univ.beans.Radiation;
-import com.univ.dao.AbstractDao;
-import org.junit.Test;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import static org.junit.Assert.*;
-
 public class MySqlInfluenceDaoTest {
-    @Test
+   /* @Test
     public void create() throws Exception {
         MySqlDaoFactory factory = new MySqlDaoFactory();
         AbstractDao dao = factory.getDao(factory.getConnection(), Radiation.class);
@@ -59,5 +49,5 @@ public class MySqlInfluenceDaoTest {
         AbstractDao dao = factory.getDao(factory.getConnection(), Influence.class);
         Influence influence = (Influence) dao.read(2);
         dao.delete(influence);
-    }
+    }*/
 }

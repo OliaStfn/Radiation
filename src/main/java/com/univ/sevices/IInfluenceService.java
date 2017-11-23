@@ -1,7 +1,6 @@
 package com.univ.sevices;
 
 import com.univ.beans.Influence;
-import com.univ.beans.Radiation;
 import com.univ.beans.Recommendation;
 
 import java.util.HashSet;

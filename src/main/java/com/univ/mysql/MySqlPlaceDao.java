@@ -2,8 +2,6 @@ package com.univ.mysql;
 
 import com.univ.beans.Influence;
 import com.univ.beans.Place;
-import com.univ.beans.Position;
-import com.univ.beans.Radiation;
 import com.univ.dao.AbstractDao;
 import com.univ.dao.DaoException;
 
@@ -75,9 +73,11 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
 
                 position.setId(rs.getLong("position_id"));
                 position.setLatitudeDegree(rs.getInt("latitude_degree"));
-                position.setLatitudeMinute(rs.getInt("latitude_minute"));
+                position.setLatitudeMinute(rs.getDouble("latitude_minute"));
+                position.setLatitude(rs.getString("latitude"));
                 position.setLongitudeDegree(rs.getInt("longitude_degree"));
-                position.setLongitudeMinute(rs.getInt("longitude_minute"));
+                position.setLongitudeMinute(rs.getDouble("longitude_minute"));
+                position.setLongitude(rs.getString("longitude"));
 
                 temp.setId(rs.getLong("place_id"));
                 temp.setName(rs.getString("place_name"));

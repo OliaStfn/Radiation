@@ -2,8 +2,6 @@ package com.univ.mysql;
 
 import com.univ.beans.Influence;
 import com.univ.beans.Place;
-import com.univ.beans.Position;
-import com.univ.beans.Radiation;
 import com.univ.dao.AbstractDao;
 import com.univ.dao.DaoException;
 import com.univ.dao.DaoFactory;

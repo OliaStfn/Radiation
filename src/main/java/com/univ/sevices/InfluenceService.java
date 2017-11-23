@@ -1,7 +1,6 @@
 package com.univ.sevices;
 
 import com.univ.beans.Influence;
-import com.univ.beans.Radiation;
 import com.univ.beans.Recommendation;
 import com.univ.dao.AbstractDao;
 import com.univ.dao.DaoException;
@@ -60,6 +59,7 @@ public class InfluenceService implements IInfluenceService {
         int percentageOfContamination = 0;
         double radiation = 0;
         String advantageType = "";
+
         for (Influence influence : nearPositions) {
             percentageOfContamination += influence.getPercentageOfContamination();
             Radiation temp = influence.getRadiation();

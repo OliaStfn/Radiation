@@ -7,16 +7,34 @@ import java.io.Serializable;
 /**
  * Created by Олюнь on 17.09.2017.
  */
-public class Place implements Identificator<Long>,Serializable {
+public class Place implements Identificator<Long>, Serializable {
     private long id;
     private String name;
     private String description;
-    private Position position;
+    private String latitude;
+    private String longitude;
     private Influence influence;
 
     public Place() {
+        id = 0;
+        name = "none";
+        description = "none";
+        latitude = "none";
+        longitude = "none";
+        influence = new Influence();
     }
 
+    public Place(String name, String description, String latitude,
+                 String longitude) {
+        this.id = 0;
+        this.name = name;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.influence = new Influence();
+    }
+
+    @Override
     public long getId() {
         return id;
     }
@@ -41,12 +59,20 @@ public class Place implements Identificator<Long>,Serializable {
         this.description = description;
     }
 
-    public Position getPosition() {
-        return position;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public Influence getInfluence() {

@@ -2,22 +2,25 @@ package com.univ.beans;
 
 import com.univ.dao.Identificator;
 
-public class Element implements Identificator<Long>{
+public class Element implements Identificator<Long> {
     private long id;
     private String radioactiveElement;
+    private String name;
     private int number;
     private int mass;
 
     public Element() {
-        id=0;
-        radioactiveElement="none";
-        number=0;
-        mass=0;
+        id = 0;
+        radioactiveElement = "none";
+        name = "none";
+        number = 0;
+        mass = 0;
     }
 
-    public Element(String radioactiveElement, int number, int mass) {
+    public Element(String radioactiveElement, String name, int number, int mass) {
         this.id = 0;
         this.radioactiveElement = radioactiveElement;
+        this.name = name;
         this.number = number;
         this.mass = mass;
     }
@@ -52,5 +55,13 @@ public class Element implements Identificator<Long>{
 
     public void setMass(int mass) {
         this.mass = mass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

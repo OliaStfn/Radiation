@@ -10,24 +10,21 @@ import java.time.LocalDateTime;
  */
 public class Influence implements Identificator<Long>, Serializable {
     private long id;
-    private int percentageOfContamination; //in percent
     private double radiation;
-    private long radioactiveElementId;
+    private Element element;
     private LocalDateTime lastUpdateTime;
 
     public Influence() {
-        id=0;
-        percentageOfContamination=0;
-        radiation=0;
-        radioactiveElementId=0;
-        lastUpdateTime=LocalDateTime.now();
+        id = 0;
+        radiation = 0;
+        element = new Element();
+        lastUpdateTime = LocalDateTime.now();
     }
 
-    public Influence(int percentageOfContamination, double radiation, long radioactiveElementId) {
+    public Influence(double radiation, Element element) {
         this.id = 0;
-        this.percentageOfContamination = percentageOfContamination;
         this.radiation = radiation;
-        this.radioactiveElementId = radioactiveElementId;
+        this.element = element;
         this.lastUpdateTime = LocalDateTime.now();
     }
 
@@ -40,14 +37,6 @@ public class Influence implements Identificator<Long>, Serializable {
         this.id = id;
     }
 
-    public int getPercentageOfContamination() {
-        return percentageOfContamination;
-    }
-
-    public void setPercentageOfContamination(int percentageOfContamination) {
-        this.percentageOfContamination = percentageOfContamination;
-    }
-
     public double getRadiation() {
         return radiation;
     }
@@ -56,12 +45,12 @@ public class Influence implements Identificator<Long>, Serializable {
         this.radiation = radiation;
     }
 
-    public long getRadioactiveElementId() {
-        return radioactiveElementId;
+    public Element getElement() {
+        return element;
     }
 
-    public void setRadioactiveElementId(long radioactiveElementId) {
-        this.radioactiveElementId = radioactiveElementId;
+    public void setElement(Element element) {
+        this.element = element;
     }
 
     public LocalDateTime getLastUpdateTime() {
@@ -70,5 +59,9 @@ public class Influence implements Identificator<Long>, Serializable {
 
     public void setLastUpdateTime(LocalDateTime lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public void update() {
+        //TODO
     }
 }

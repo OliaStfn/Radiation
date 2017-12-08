@@ -1,5 +1,6 @@
 package com.univ.mysql;
 
+import com.univ.beans.Element;
 import com.univ.beans.Influence;
 import com.univ.beans.Place;
 import com.univ.dao.AbstractDao;
@@ -18,36 +19,31 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM place pl " +
-                "LEFT JOIN influence inf USING(influence_id) " +
-                "LEFT JOIN radiation r USING(radiation_id) " +
-                "LEFT JOIN position p ON(pl.position_id=p.position_id) " +
-                "WHERE pl.place_id=";
+        return "SELECT * FROM Places p LEFT JOIN Influences inf ON(p.Influences_influence_id=inf.influence_id) " +
+                "LEFT JOIN Elements e ON(inf.Elements_element_id=e.element_id) WHERE place_id=";
     }
 
     @Override
     public String getSelectAllQuery() {
-        return "SELECT * FROM place pl " +
-                "LEFT JOIN influence inf USING(influence_id) " +
-                "LEFT JOIN radiation r USING(radiation_id) " +
-                "LEFT JOIN position p ON(pl.position_id=p.position_id);";
+        return "SELECT * FROM Places p LEFT JOIN Influences inf ON(p.Influences_influence_id=inf.influence_id) " +
+                "LEFT JOIN Elements e ON(inf.Elements_element_id=e.element_id);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE place SET place_name=?,place_description=?,position_id=?,influence_id=? " +
+        return "UPDATE Places SET name=?,description=?,latitude=?,longitude=?,Influences_influence_id=? " +
                 "WHERE place_id=?;";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO place(place_name,place_description,position_id,influence_id) " +
-                "VALUES(?,?,?,?);";
+        return "INSERT INTO Places(name,description,latitude,longitude,Influences_influence_id) " +
+                "VALUES(?,?,?,?,?);";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM place WHERE place_id=?;";
+        return "DELETE FROM Places WHERE place_id=?;";
     }
 
     @Override
@@ -57,33 +53,26 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         try {
             while (rs.next()) {
                 Place temp = new Place();
-                Position position = new Position();
                 Influence influence = new Influence();
-                Radiation radiation = new Radiation();
+                Element element = new Element();
 
-                radiation.setId(rs.getLong("radiation_id"));
-                radiation.setRadiation(rs.getDouble("radiation"));
-                radiation.setAdvantageType(rs.getString("radiation_advantage_type"));
-                radiation.setLastUpdateDate(rs.getDate("last_update_date").toLocalDate());
+                element.setId(rs.getLong("element_id"));
+                element.setRadioactiveElement(rs.getString("radioactive_element"));
+                element.setName(rs.getString("element_name"));
+                element.setNumber(rs.getInt("number"));
+                element.setMass(rs.getInt("mass"));
 
                 influence.setId(rs.getLong("influence_id"));
-                influence.setProbabilityOfMutation(rs.getInt("probability_of_mutation"));
-                influence.setPercentageOfContamination(rs.getInt("percentage_of_contamination"));
-                influence.setRadiation(radiation);
+                influence.setRadiation(rs.getDouble("radiation"));
+                influence.setElement(element);
+                influence.setLastUpdateTime(rs.getTimestamp("last_update_time").toLocalDateTime());
 
-                position.setId(rs.getLong("position_id"));
-                position.setLatitudeDegree(rs.getInt("latitude_degree"));
-                position.setLatitudeMinute(rs.getDouble("latitude_minute"));
-                position.setLatitude(rs.getString("latitude"));
-                position.setLongitudeDegree(rs.getInt("longitude_degree"));
-                position.setLongitudeMinute(rs.getDouble("longitude_minute"));
-                position.setLongitude(rs.getString("longitude"));
-
-                temp.setId(rs.getLong("place_id"));
-                temp.setName(rs.getString("place_name"));
-                temp.setDescription(rs.getString("place_description"));
+                temp.setId(rs.getInt("place_id"));
+                temp.setName(rs.getString("name"));
+                temp.setDescription(rs.getString("description"));
+                temp.setLatitude(rs.getString("latitude"));
+                temp.setLongitude(rs.getString("longitude"));
                 temp.setInfluence(influence);
-                temp.setPosition(position);
 
                 result.add(temp);
             }
@@ -98,9 +87,10 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         try {
             prSt.setString(1, obj.getName());
             prSt.setString(2, obj.getDescription());
-            prSt.setLong(3, obj.getPosition().getId());
-            prSt.setLong(4, obj.getInfluence().getId());
-            prSt.setLong(5, obj.getId());
+            prSt.setString(3, obj.getLatitude());
+            prSt.setString(4, obj.getLongitude());
+            prSt.setLong(5, obj.getInfluence().getId());
+            prSt.setLong(6, obj.getId());
 
         } catch (SQLException e) {
             throw new DaoException();
@@ -112,8 +102,9 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         try {
             prSt.setString(1, obj.getName());
             prSt.setString(2, obj.getDescription());
-            prSt.setLong(3, obj.getPosition().getId());
-            prSt.setLong(4, obj.getInfluence().getId());
+            prSt.setString(3, obj.getLatitude());
+            prSt.setString(4, obj.getLongitude());
+            prSt.setLong(5, obj.getInfluence().getId());
         } catch (SQLException e) {
             throw new DaoException();
         }

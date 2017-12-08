@@ -1,5 +1,6 @@
 package com.univ.mysql;
 
+import com.univ.beans.Element;
 import com.univ.beans.Influence;
 import com.univ.dao.AbstractDao;
 import com.univ.dao.DaoException;
@@ -17,30 +18,31 @@ public class MySqlInfluenceDao extends AbstractDao<Influence, Long> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM influence inf LEFT JOIN radiation r " +
-                "USING(radiation_id) WHERE influence_id=";
+        return "SELECT * FROM Influences inf LEFT JOIN Elements e " +
+                "ON(inf.Elements_element_id=e.element_id) WHERE influence_id=";
     }
 
     @Override
     public String getSelectAllQuery() {
-        return "SELECT * FROM influence inf LEFT JOIN radiation r USING(radiation_id);";
+        return "SELECT * FROM Influences inf LEFT JOIN Elements e " +
+                "ON(inf.Elements_element_id=e.element_id);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE influence SET probability_of_mutation=?, " +
-                "percentage_of_contamination=? WHERE influence_id=?;";
+        return "UPDATE Influences SET radiation=?, " +
+                "Elements_element_id=?, last_update_time=NOW() WHERE influence_id=?;";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO influence (probability_of_mutation,percentage_of_contamination,radiation_id) " +
-                "VALUES (?,?,?);";
+        return "INSERT INTO Influences (radiation, Elements_element_id, last_update_time) " +
+                "VALUES (?,?,NOW());";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM influence WHERE influence_id=?;";
+        return "DELETE FROM Influences WHERE influence_id=?;";
     }
 
     @Override
@@ -50,17 +52,18 @@ public class MySqlInfluenceDao extends AbstractDao<Influence, Long> {
         try {
             while (rs.next()) {
                 Influence temp = new Influence();
-                Radiation radiation = new Radiation();
+                Element element = new Element();
 
-                radiation.setId(rs.getLong("radiation_id"));
-                radiation.setRadiation(rs.getDouble("radiation"));
-                radiation.setAdvantageType(rs.getString("radiation_advantage_type"));
-                radiation.setLastUpdateDate(rs.getDate("last_update_date").toLocalDate());
+                element.setId(rs.getLong("element_id"));
+                element.setRadioactiveElement(rs.getString("radioactive_element"));
+                element.setName(rs.getString("element_name"));
+                element.setNumber(rs.getInt("number"));
+                element.setMass(rs.getInt("mass"));
 
                 temp.setId(rs.getLong("influence_id"));
-                temp.setProbabilityOfMutation(rs.getInt("probability_of_mutation"));
-                temp.setPercentageOfContamination(rs.getInt("percentage_of_contamination"));
-                temp.setRadiation(radiation);
+                temp.setRadiation(rs.getDouble("radiation"));
+                temp.setElement(element);
+                temp.setLastUpdateTime(rs.getTimestamp("last_update_time").toLocalDateTime());
 
                 result.add(temp);
             }
@@ -73,8 +76,8 @@ public class MySqlInfluenceDao extends AbstractDao<Influence, Long> {
     @Override
     public void parsUpdate(PreparedStatement prSt, Influence obj) throws DaoException {
         try {
-            prSt.setInt(1, obj.getProbabilityOfMutation());
-            prSt.setInt(2, obj.getPercentageOfContamination());
+            prSt.setDouble(1, obj.getRadiation());
+            prSt.setLong(2, obj.getElement().getId());
             prSt.setLong(3, obj.getId());
         } catch (SQLException e) {
             throw new DaoException();
@@ -84,9 +87,8 @@ public class MySqlInfluenceDao extends AbstractDao<Influence, Long> {
     @Override
     public void parsInsert(PreparedStatement prSt, Influence obj) throws DaoException {
         try {
-            prSt.setInt(1, obj.getProbabilityOfMutation());
-            prSt.setInt(2, obj.getPercentageOfContamination());
-            prSt.setLong(3, obj.getRadiation().getId());
+            prSt.setDouble(1, obj.getRadiation());
+            prSt.setLong(2, obj.getElement().getId());
         } catch (SQLException e) {
             throw new DaoException();
         }

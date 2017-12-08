@@ -11,12 +11,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet(name = "Places")
 public class Places extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+        PrintWriter writer = response.getWriter();
+
+        String name = request.getParameter("name");
+        DaoFactory factory = new MySqlDaoFactory();
+        try {
+            AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
+            ArrayList<Place> places = dao.readAll();
+
+            for (Place place : places) {
+                if (place.getName()==name){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("place", place);
+                    request.getRequestDispatcher("place.jsp").forward(request, response);
+                }
+            }
+            writer.println("Cannot find this place");
+        } catch (DaoException e) {
+        }
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
@@ -27,31 +51,9 @@ public class Places extends HttpServlet {
             AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
             ArrayList<Place> places = dao.readAll();
 
-            show.print("<table align=\"center\" border=\"1\">" +
-                    "<tr>" +
-                    "<th>Place name</th>" +
-                    "<th width=\"50%\">Place description</th>" +
-                    "<th>Latitude</th>" +
-                    "<th>Longitude</th>" +
-                    "<th>Radiation</th>" +
-                    "<th>Radiation type</th>" +
-                    "</tr>");
-            for (Place place : places) {
-                String degree = String.valueOf((char) 176);
-                String latitude = place.getPosition().getLatitudeDegree() +
-                        degree + place.getPosition().getLatitudeMinute() + " " + place.getPosition().getLatitude();
-                String longitude = place.getPosition().getLongitudeDegree() +
-                        degree + place.getPosition().getLongitudeMinute() + " " + place.getPosition().getLongitude();
-                show.print("<tr>" +
-                        "<td>" + place.getName() + "</td>" +
-                        "<td width=\"50%\">" + place.getDescription() + "</td>" +
-                        "<td>" + latitude + "</td>" +
-                        "<td>" + longitude + "</td>" +
-                        "<td>" + place.getInfluence().getRadiation().getRadiation() + "мкР</td>" +
-                        "<td>" + place.getInfluence().getRadiation().getAdvantageType() + "</td>" +
-                        "</tr>");
-            }
-            show.print("</table>");
+            HttpSession session = request.getSession();
+            session.setAttribute("places", places);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (DaoException e) {
             show.print("There is none place");
         }

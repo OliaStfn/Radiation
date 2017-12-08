@@ -1,0 +1,14 @@
+form > label {
+    margin: 5px;
+    padding: 5px;
+    display: inline;
+}
+
+form > label > input {
+    display: none;
+}
+
+.selected{
+    color: #f4fcff;
+    background-color: rgba(255, 5, 0, 0.7);
+}

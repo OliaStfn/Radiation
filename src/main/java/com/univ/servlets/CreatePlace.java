@@ -14,6 +14,6 @@ public class CreatePlace extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().print("gggggg");
+        request.getRequestDispatcher("create_place.jsp").forward(request,response);
     }
 }

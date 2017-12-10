@@ -1,11 +1,7 @@
-form > label {
+form > span {
+    border: 1px;
     margin: 5px;
     padding: 5px;
-    display: inline;
-}
-
-form > label > input {
-    display: none;
 }
 
 .selected{

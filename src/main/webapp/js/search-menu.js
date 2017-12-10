@@ -3,12 +3,12 @@ function hideForms() {
 }
 
 function clearSelect() {
-    $(document).find("form").find("label").attr("class", "");
+    $(document).find("form").find("span").attr("class", "");
 }
 
 $(document).ready(function () {
     var form = $(document).find("form");
-    var choices = form.find("label");
+    var choices = form.find("span");
 
     hideForms();
 
@@ -16,7 +16,7 @@ $(document).ready(function () {
         hideForms();
         clearSelect();
         $(this).attr("class", "selected");
-        var id = $(this).find("input").val();
+        var id = $(this).text();
         form.find("#" + id).css("display", "block");
     })
 });

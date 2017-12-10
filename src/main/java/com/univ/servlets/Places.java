@@ -30,7 +30,7 @@ public class Places extends HttpServlet {
             ArrayList<Place> places = dao.readAll();
 
             for (Place place : places) {
-                if (place.getName()==name){
+                if (place.getName().equals(name)){
                     HttpSession session = request.getSession();
                     session.setAttribute("place", place);
                     request.getRequestDispatcher("place.jsp").forward(request, response);

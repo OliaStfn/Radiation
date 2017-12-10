@@ -59,7 +59,6 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
                 element.setId(rs.getLong("element_id"));
                 element.setRadioactiveElement(rs.getString("radioactive_element"));
                 element.setName(rs.getString("element_name"));
-                element.setNumber(rs.getInt("number"));
                 element.setMass(rs.getInt("mass"));
 
                 influence.setId(rs.getLong("influence_id"));
@@ -70,8 +69,8 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
                 temp.setId(rs.getInt("place_id"));
                 temp.setName(rs.getString("name"));
                 temp.setDescription(rs.getString("description"));
-                temp.setLatitude(rs.getString("latitude"));
-                temp.setLongitude(rs.getString("longitude"));
+                temp.setLatitude(rs.getDouble("latitude"));
+                temp.setLongitude(rs.getDouble("longitude"));
                 temp.setInfluence(influence);
 
                 result.add(temp);
@@ -87,8 +86,8 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         try {
             prSt.setString(1, obj.getName());
             prSt.setString(2, obj.getDescription());
-            prSt.setString(3, obj.getLatitude());
-            prSt.setString(4, obj.getLongitude());
+            prSt.setDouble(3, obj.getLatitude());
+            prSt.setDouble(4, obj.getLongitude());
             prSt.setLong(5, obj.getInfluence().getId());
             prSt.setLong(6, obj.getId());
 
@@ -102,8 +101,8 @@ public class MySqlPlaceDao extends AbstractDao<Place, Long> {
         try {
             prSt.setString(1, obj.getName());
             prSt.setString(2, obj.getDescription());
-            prSt.setString(3, obj.getLatitude());
-            prSt.setString(4, obj.getLongitude());
+            prSt.setDouble(3, obj.getLatitude());
+            prSt.setDouble(4, obj.getLongitude());
             prSt.setLong(5, obj.getInfluence().getId());
         } catch (SQLException e) {
             throw new DaoException();

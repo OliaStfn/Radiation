@@ -57,7 +57,6 @@ public class MySqlInfluenceDao extends AbstractDao<Influence, Long> {
                 element.setId(rs.getLong("element_id"));
                 element.setRadioactiveElement(rs.getString("radioactive_element"));
                 element.setName(rs.getString("element_name"));
-                element.setNumber(rs.getInt("number"));
                 element.setMass(rs.getInt("mass"));
 
                 temp.setId(rs.getLong("influence_id"));

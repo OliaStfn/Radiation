@@ -21,7 +21,8 @@
         <td>${place.longitude}</td>
         <td>${place.influence.radiation}</td>
         <td><sup>${place.influence.element.mass}</sup>
-            <sub>${place.influence.element.number}</sub>
-            ${place.influence.element.radioactiveElement}</td>
+        ${place.influence.element.radioactiveElement}</td>
+        <td>${place.influence.lastUpdateTime.dayOfMonth}.${place.influence.lastUpdateTime.monthValue}.${place.influence.lastUpdateTime.year}
+            ${place.influence.lastUpdateTime.hour}:${place.influence.lastUpdateTime.minute}:${place.influence.lastUpdateTime.second}</td>
     </tr>
 </table>

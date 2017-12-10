@@ -27,12 +27,12 @@ public class MySqlElementDao extends AbstractDao<Element, Long> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Elements SET radioactive_element=?, element_name=?, number=?, mass=? WHERE element_id=?;";
+        return "UPDATE Elements SET radioactive_element=?, element_name=?, mass=? WHERE element_id=?;";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO Elements (radioactive_element, element_name, number, mass) VALUES(?,?,?,?);";
+        return "INSERT INTO Elements (radioactive_element, element_name, mass) VALUES(?,?,?);";
     }
 
     @Override
@@ -51,7 +51,6 @@ public class MySqlElementDao extends AbstractDao<Element, Long> {
                 temp.setId(rs.getLong("element_id"));
                 temp.setRadioactiveElement(rs.getString("radioactive_element"));
                 temp.setName(rs.getString("element_name"));
-                temp.setNumber(rs.getInt("number"));
                 temp.setMass(rs.getInt("mass"));
 
                 result.add(temp);
@@ -67,9 +66,8 @@ public class MySqlElementDao extends AbstractDao<Element, Long> {
         try {
             prSt.setString(1, obj.getRadioactiveElement());
             prSt.setString(2, obj.getName());
-            prSt.setInt(3, obj.getNumber());
-            prSt.setInt(4, obj.getMass());
-            prSt.setLong(5, obj.getId());
+            prSt.setInt(3, obj.getMass());
+            prSt.setLong(4, obj.getId());
 
         } catch (SQLException e) {
             throw new DaoException();
@@ -81,8 +79,7 @@ public class MySqlElementDao extends AbstractDao<Element, Long> {
         try {
             prSt.setString(1, obj.getRadioactiveElement());
             prSt.setString(2, obj.getName());
-            prSt.setInt(3, obj.getNumber());
-            prSt.setInt(4, obj.getMass());
+            prSt.setInt(3, obj.getMass());
         } catch (SQLException e) {
             throw new DaoException();
         }

@@ -3,10 +3,10 @@
 <script src="js/search-menu.js"></script>
 <form action="Places" method="post">
     <h1>What search by?</h1>
-    <label><input type="radio" name="radio" value="position">Position</label>
-    <label><input type="radio" name="radio" value="name">Place name</label>
+    <span>Position</span>
+    <span>Name</span>
     <hr>
-    <div id="position">
+    <div id="Position">
         <label>Latitude (as "degree.minutes.seconds") <input name="latitude" value="0.0.0"></label>
         <select name="latitude-string">
             <option disabled selected>Not selected</option>
@@ -20,7 +20,7 @@
             <option value="E">East</option>
         </select><br>
     </div>
-    <div id="name">
+    <div id="Name">
         <label>Place name: <input name="name"></label>
     </div><br>
     <input type="submit" value="Search">

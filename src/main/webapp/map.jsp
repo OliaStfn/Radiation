@@ -24,15 +24,22 @@
     <a href="/map.jsp">Map</a>
     <a href="/search.jsp">Search</a>
 </div>
-<c:set var="lat" value="50.27"/>
-<c:set var="lng" value="30.3145"/>
+<c:set var="lat" value="50.45987"/>
+<c:set var="lng" value="30.562989"/>
 <div id="map"></div>
 <script>
     var map;
     function initMap() {
+        var myLatLng = {lat: ${lat}, lng: ${lng}};
+
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: ${lat}, lng: ${lng}},
             zoom: 8
+        });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Київ'
         });
     }
 </script>

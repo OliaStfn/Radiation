@@ -17,6 +17,13 @@
     </style>
 </head>
 <body>
+<div align="center">
+    <a href="/Places">Places</a>
+    <a href="/Places?name=Київ">Place</a>
+    <a href="/CreatePlace">Create place</a>
+    <a href="/map.jsp">Map</a>
+    <a href="/search.jsp">Search</a>
+</div>
 <c:set var="lat" value="50.27"/>
 <c:set var="lng" value="30.3145"/>
 <div id="map"></div>

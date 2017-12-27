@@ -1,5 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div align="center">
+    <a href="/Places">Places</a>
+    <a href="/Places?name=Київ">Place</a>
+    <a href="/CreatePlace">Create place</a>
+    <a href="/map.jsp">Map</a>
+    <a href="/search.jsp">Search</a>
+</div>
 <jsp:useBean id="elements" class="java.util.ArrayList" scope="session">
     <jsp:setProperty name="elements" property="*"/>
 </jsp:useBean>

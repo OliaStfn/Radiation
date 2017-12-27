@@ -1,6 +1,13 @@
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/search-menu.js"></script>
+<div align="center">
+    <a href="/Places">Places</a>
+    <a href="/Places">Place</a>
+    <a href="/CreatePlace">Create place</a>
+    <a href="/map.jsp">Map</a>
+    <a href="/search.jsp">Search</a>
+</div>
 <form action="Places" method="post">
     <h1>What search by?</h1>
     <span>Position</span>

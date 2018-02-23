@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div align="center">
-    <a href="/Places">Places</a>
-    <a href="/Places?name=Київ">Place</a>
-    <a href="/CreatePlace">Create place</a>
-    <a href="/map.jsp">Map</a>
-    <a href="/search.jsp">Search</a>
-</div>
+<jsp:include page="nav_bar.jsp" flush="true"/>
 <jsp:useBean id="place" class="com.univ.beans.Place" scope="session">
     <jsp:setProperty name="place" property="*"/>
 </jsp:useBean>

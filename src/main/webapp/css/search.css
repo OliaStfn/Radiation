@@ -1,0 +1,10 @@
+form > span {
+    border: 1px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.selected{
+    color: #f4fcff;
+    background-color: rgba(255, 5, 0, 0.7);
+}

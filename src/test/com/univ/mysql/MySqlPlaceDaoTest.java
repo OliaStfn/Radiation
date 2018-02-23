@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertNotNull;
 
 public class MySqlPlaceDaoTest {
-    @Test
+    /*@Test
     public void create() throws Exception {
         MySqlDaoFactory factory = new MySqlDaoFactory();
         AbstractDao dao = factory.getDao(factory.getConnection(), Influence.class);
@@ -62,5 +62,5 @@ public class MySqlPlaceDaoTest {
         AbstractDao dao = factory.getDao(factory.getConnection(), Place.class);
         Place place = (Place) dao.read(4);
         dao.delete(place);
-    }
+    }*/
 }

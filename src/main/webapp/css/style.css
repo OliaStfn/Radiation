@@ -1,10 +1,17 @@
-form > span {
-    border: 1px;
-    margin: 5px;
-    padding: 5px;
+html {
+    background-image: url("../img/back.jpg");
 }
 
-.selected{
-    color: #f4fcff;
-    background-color: rgba(255, 5, 0, 0.7);
+#nav {
+    align-content: center;
+    background-color: white;
+    border: 1px;
+    border-radius: 20px;
+    width: 50%;
+    margin: 15px;
+    height: 27px;
+}
+
+#nav input {
+    background-color: ghostwhite;
 }

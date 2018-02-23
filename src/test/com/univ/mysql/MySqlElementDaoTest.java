@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class MySqlElementDaoTest {
-    @Test
+    /*@Test
     public void create() throws Exception {
         MySqlDaoFactory factory = new MySqlDaoFactory();
         AbstractDao dao = factory.getDao(factory.getConnection(), Element.class);
@@ -55,5 +55,5 @@ public class MySqlElementDaoTest {
         AbstractDao dao = factory.getDao(factory.getConnection(), Element.class);
         Element element = (Element) dao.read(4);
         dao.delete(element);
-    }
+    }*/
 }

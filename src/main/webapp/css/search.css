@@ -4,7 +4,7 @@ form > span {
     padding: 5px;
 }
 
-.selected{
+.select{
     color: #f4fcff;
-    background-color: rgba(255, 5, 0, 0.7);
+    background-color: forestgreen;
 }

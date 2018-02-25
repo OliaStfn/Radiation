@@ -1,27 +1,24 @@
+<link rel="stylesheet" href="css/style.css">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div align="center">
-    <a href="/Places">Places</a>
-    <a href="/Places?name=Київ">Place</a>
-    <a href="/CreatePlace">Create place</a>
-    <a href="/map.jsp">Map</a>
-    <a href="/search.jsp">Search</a>
-</div>
 <jsp:useBean id="elements" class="java.util.ArrayList" scope="session">
     <jsp:setProperty name="elements" property="*"/>
 </jsp:useBean>
-<form action="CreatePlace" method="post">
-    <label>Name: <input name="name"></label><br>
-    <label>Description:<br><textarea rows="10" cols="50" name="description"></textarea></label><br>
-    <label>Latitude: <input type="number" name="latitude"></label><br>
-    <label>Longitude: <input type="number" name="longitude"></label><br>
-    <label>Radiation: <input name="radiation"></label><br>
-    <label for="select">Element</label>
+<jsp:include page="nav_bar.jsp" flush="true"/>
+<br><br><br>
+<form style="color: ghostwhite" action="CreatePlace" method="post">
+    <label>Назва точки: <input name="name"></label><br>
+    <label>Опис:<br><textarea rows="5" cols="40" name="description"></textarea></label><br>
+    <label>Широта: <input type="number" name="latitude"></label><br>
+    <label>Довгота: <input type="number" name="longitude"></label><br>
+    <label>Радіаційне випромінювання(мкР/год): <input name="radiation" type="number"></label><br>
+    <label for="select">Переважаючий ізотоп хім. ел.</label>
     <select id="select" name="elements">
         <option disabled selected>Not selected</option>
         <c:forEach var="element" items="${elements}">
-            <option value="${element.id}">${element.name}(<sup>${element.mass}</sup>${element.radioactiveElement})</option>
+            <option value="${element.id}">${element.name}(<sup>${element.mass}</sup>${element.radioactiveElement})
+            </option>
         </c:forEach>
-    </select><br>
-    <input type="submit" value="Add">
+    </select><br><br>
+    <input type="submit" value="Додати точку">
 </form>

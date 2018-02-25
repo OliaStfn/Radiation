@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/search.css">
 <div align="center">
     <div id="nav">
         <input type="button" value="Places" onclick='location.href="/Places"'>

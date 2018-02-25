@@ -15,7 +15,7 @@ $(document).ready(function () {
     choices.on("click", function () {
         hideForms();
         clearSelect();
-        $(this).attr("class", "selected");
+        $(this).attr("class", "select");
         var id = $(this).text();
         form.find("#" + id).css("display", "block");
     })

@@ -3,8 +3,9 @@
 <c:set var="lat" value="50.45987"/>
 <c:set var="lng" value="30.562989"/>
 <link href="css/map.css" rel="stylesheet"/>
-<input type="text">
-<div align="center"><div id="map"></div></div>
+    <div align="center">
+        <div id="map"></div>
+    </div>
 <script>
     var map;
     function initMap() {
